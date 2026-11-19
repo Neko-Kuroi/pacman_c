@@ -142,12 +142,12 @@ def cdiv(a,b):
     q=abs(a)//abs(b); return -q if (a<0)!=(b<0) else q
 def cmod(a,b): return a-b*cdiv(a,b)          # C の % (0 方向へ切り捨て)
 def tile_of(x,y): return (cdiv(x,TILE),cdiv(y,TILE))
-def clamp_tile(tx,ty): return (tx%TX,max(0,min(TY-1,ty)))
+def clamp_tile(tx,ty): return (max(0,min(TX-1,tx)),max(3,min(TY-3,ty)))
 def dist_mid(x,y): return (4-cmod(x,TILE),4-cmod(y,TILE))
 def sqdist(a,b): return (b[0]-a[0])**2+(b[1]-a[1])**2
 def is_wall(tx,ty):
     tx,ty=clamp_tile(tx,ty); return S.gfx.vram[ty][tx] in (WALL,DOOR)
-def is_redzone(p): return p[1] in (14,26) and 12<=p[0]<=15
+def is_redzone(p): return p[1] in (14,26) and 11<=p[0]<=16
 def is_tunnel(p): return p[1]==17 and (p[0]<=5 or p[0]>=22)
 def can_move(x,y,d,cornering):
     dx,dy=DIRVEC[d]; mx,my=dist_mid(x,y)
