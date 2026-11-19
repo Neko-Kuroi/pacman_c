@@ -338,7 +338,7 @@ def update_actors(snd):
         n=ghost_speed(gh); a=gh.actor
         if gh.state in (GState.HOUSE,GState.LEAVEHOUSE,GState.ENTERHOUSE):
             house_move(gh,n); continue
-        if gh.state==GState.EYES and abs(a.y-DOOR_Y)<=2 and abs(a.x-DOOR_X)>2:
+        if gh.state==GState.EYES and abs(a.y-DOOR_Y)<=2 and 2<abs(a.x-DOOR_X)<=16:
             a.dir=Dir.LEFT if a.x>DOOR_X else Dir.RIGHT
             a.x=approach(a.x,DOOR_X,n); a.anim+=n; continue
         if n==0: continue          # 動かないティックでは向きを決めない
@@ -369,7 +369,7 @@ def round_init():
     if g.after_death:
         g.global_active=True; g.global_counter=0; g.after_death=False
     else:
-        build_playfield(); g.num_dots=0; g.fruit_history.append(levelspec(g.round)[0])
+        build_playfield(); g.num_dots=0; g.fruit_history.append(levelspec(g.round)[0]); g.global_active=False
     place_actors(); g.xorshift=0x12345678; input_enable()
     g.freeze=Freeze.READY; g.dying=False
     put_text(9,14,"          ",5); put_text(11,20,"READY!",9); start(g.force_leave)
