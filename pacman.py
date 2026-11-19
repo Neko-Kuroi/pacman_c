@@ -341,6 +341,7 @@ def update_actors(snd):
         if gh.state==GState.EYES and abs(a.y-DOOR_Y)<=2 and abs(a.x-DOOR_X)>2:
             a.dir=Dir.LEFT if a.x>DOOR_X else Dir.RIGHT
             a.x=approach(a.x,DOOR_X,n); a.anim+=n; continue
+        if n==0: continue          # 動かないティックでは向きを決めない
         ghost_dir(gh)
         for _ in range(n):
             if not can_move(a.x,a.y,a.dir,False): break
