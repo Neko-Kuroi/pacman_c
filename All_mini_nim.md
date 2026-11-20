@@ -1,6 +1,6 @@
 # パックマンを書く ― Nim 版（ミニ版）
 
-（全文連結版・第3版）
+（全文連結版・第4版）
 
 C版教科書『パックマンを書く』（floooh/pacman.c を題材に、
 序章＋準備編＋全27章＋付録A〜E）と、Python 版（ミニ版）の
@@ -249,7 +249,7 @@ C の `sokol_main`（pacman.c 716行）と見比べて
 コールバックの中身も、C と同じ分担です。`init`
 （12行）は描画と音の初期化と、イントロの開始。
 `frame`（17行）は固定ティックの消化と描画と音の
-送出。`input`（40行）はキーを入力の状態に写すこと。
+送出。`input`（39行）はキーを入力の状態に写すこと。
 `cleanup`（65行）は後片付け。詳しくは第4章で
 読みます。
 
@@ -628,7 +628,7 @@ C のビット演算と比べて何が変わりますか。
 でした。トリガーとは、「何ティック目に起きるか」を
 1つの数字で持つ仕組みです。Nim 版の語彙は、C の
 関数群とほぼ同形に写されています。中心の4つを
-引用します（timing.nim 16〜34行）。
+引用します（timing.nim 15〜33行）。
 
 ```nim
 # set time trigger to the next game tick
@@ -827,7 +827,7 @@ C の `input_dir` と同じ順序で、キーを
 
 ## 4.1 frame の中身
 
-`pacman.nim` の `frame`（17〜38行）を全文
+`pacman.nim` の `frame`（17〜37行）を全文
 引用します。
 
 ```nim
@@ -1280,8 +1280,9 @@ y の上限の書き方が、一見すると非対称です。
 `isRedzone`（geom.nim 61〜62行）も、C と同じ
 範囲（x が 11〜16、y が 14 または 26）です。
 Python 版ではこの範囲が原典とずれていたのを、
-教科書化の前の点検で直した経緯がありました。
-Nim 版は最初から原典どおりです。
+教科書化の前の点検で直した経緯がありました
+（Python ミニ版 第8章の解剖メモに記録が
+あります）。Nim 版は最初から原典どおりです。
 
 ---
 
@@ -5011,8 +5012,8 @@ void main() {
 | `levelspec`（835） | `levelspec`（pacstate.nim 373） |
 | `dist_to_tile_mid`（988） | `distToTileMid`（geom.nim 11、C の `%` に対応する `cmod`。ただし `mod` と等しい、第12章） |
 | `clamped_tile_pos`（1235） | `clampedTilePos`（geom.nim 19） |
-| `is_redzone`（1298） | `isRedzone`（geom.nim 62） |
-| `can_move` / `move`（1304、1334） | `canMove` / `move`（geom.nim 66、82） |
+| `is_redzone`（1298） | `isRedzone`（geom.nim 61） |
+| `can_move` / `move`（1304、1334） | `canMove` / `move`（geom.nim 65、82） |
 | `game_init_playfield`（1377） | `gameInitPlayfield`（rules.nim 13） |
 | `game_init` / `game_round_init`（1447、1467） | `gameInit` / `gameRoundInit`（rules.nim 85、102） |
 | `game_pacman_should_move`（1733） | `pacmanShouldMove`（rules.nim 164） |
